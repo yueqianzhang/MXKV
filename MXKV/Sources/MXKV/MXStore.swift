@@ -35,10 +35,10 @@ struct MXStore<Value: MXValue> {
     
     var projectedValue: Self { self }
 
-    init(scope: String = #function, _ name: String, default: Value? = nil) {
+    init(scope: String = #function, _ name: String, default: Value = .mx_default) {
         self.scope = scope
         self.name = name
-        self.defaultValue = `default` ?? Value.mx_default
+        self.defaultValue = `default`
     }
     
     var isUnset: Bool { engine.getData(forKey: key) == nil }
