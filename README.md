@@ -7,8 +7,8 @@ enum AppSettings {}
 
 // 1
 extension AppSettings {	        
-	@MXStore("notificationOn", default: true)
-	static var notificationOn: Bool
+    @MXStore("notificationOn", default: true)
+    static var notificationOn: Bool
 }
 
 print("notificationOn == \(AppSettings.notificationOn)") // notificationOn == true
@@ -17,8 +17,8 @@ print("notificationOn == \(AppSettings.notificationOn)") // notificationOn == fa
 
 // 2
 extension AppSettings {
-	@MXStore("uiStyle")
-	static var uiStyle: UIUserInterfaceStyle
+    @MXStore("uiStyle")
+    static var uiStyle: UIUserInterfaceStyle
 }
 
 extension UIUserInterfaceStyle: MXValue {
