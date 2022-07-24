@@ -11,7 +11,7 @@ import Foundation
 struct MXStore<Value: MXValue> {
     let scope: String
     let name: String
-    let defaultValue: Value
+    let defaultValue: () -> Value
     
     var key: String { "\(scope).\(name)" }
     
@@ -25,7 +25,7 @@ struct MXStore<Value: MXValue> {
                let value = try? JSONDecoder().decode(Value.self, from: data) {
                 return value
             }
-            return defaultValue
+            return defaultValue()
         }
         set {
             guard let data = try? JSONEncoder().encode(newValue) else { return }
@@ -35,7 +35,8 @@ struct MXStore<Value: MXValue> {
     
     var projectedValue: Self { self }
 
-    init(scope: String = #function, _ name: String, default: Value = .mx_default) {
+    init(scope: String = #function, _ name: String,
+         default: @escaping @autoclosure () -> Value = .mx_default) {
         self.scope = scope
         self.name = name
         self.defaultValue = `default`
